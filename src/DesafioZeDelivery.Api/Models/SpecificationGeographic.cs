@@ -11,7 +11,8 @@ namespace DesafioZeDelivery.Api.Models
         public string tradingName { get; set; }
         public string ownerName { get; set; }
         public string document { get; set; }
-        public object coverageArea { get; set; }
-        public object address { get; set; }
+        public GeometryMultiPolygon coverageArea { get; set; }
+        public GeometryPoint address { get; set; }
     }
+   
 }
