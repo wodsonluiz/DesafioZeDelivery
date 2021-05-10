@@ -1,4 +1,6 @@
 # Desafio de Backend [Zé Delivery]
+![Projeto](https://user-images.githubusercontent.com/13908258/117697587-0233e480-b199-11eb-9b28-9c688a91fb90.png)
+
 
 ## Pré requisitos
 
