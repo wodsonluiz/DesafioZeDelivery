@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace DesafioZeDelivery.Api.Models
+namespace DesafioZeDelivery.Core.Models
 {
     public class SpecificationGeographic
     {

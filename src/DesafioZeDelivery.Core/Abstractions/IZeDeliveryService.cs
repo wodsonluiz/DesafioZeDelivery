@@ -1,7 +1,7 @@
-﻿using DesafioZeDelivery.Api.Models;
+﻿using DesafioZeDelivery.Core.Models;
 using System.Collections.Generic;
 
-namespace DesafioZeDelivery.Api.Abstractions
+namespace DesafioZeDelivery.Core.Abstractions
 {
     public interface IZeDeliveryService
     {

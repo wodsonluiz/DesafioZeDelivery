@@ -1,6 +1,6 @@
-using DesafioZeDelivery.Api.Abstractions;
-using DesafioZeDelivery.Api.Models;
-using DesafioZeDelivery.Api.Service;
+using DesafioZeDelivery.Core.Abstractions;
+using DesafioZeDelivery.Core.Models;
+using DesafioZeDelivery.Core.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

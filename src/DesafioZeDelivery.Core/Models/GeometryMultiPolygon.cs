@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
-namespace DesafioZeDelivery.Api.Models
+namespace DesafioZeDelivery.Core.Models
 {
     public class GeometryMultiPolygon : GeometryBase
     {

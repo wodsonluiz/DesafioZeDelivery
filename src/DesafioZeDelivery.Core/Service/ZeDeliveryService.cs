@@ -1,11 +1,11 @@
-﻿using DesafioZeDelivery.Api.Abstractions;
-using DesafioZeDelivery.Api.Models;
+﻿using DesafioZeDelivery.Core.Abstractions;
+using DesafioZeDelivery.Core.Models;
 using GeoJSON.Net.Geometry;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DesafioZeDelivery.Api.Service
+namespace DesafioZeDelivery.Core.Service
 {
     public class ZeDeliveryService : IZeDeliveryService
     {

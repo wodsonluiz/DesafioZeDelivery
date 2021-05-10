@@ -1,5 +1,5 @@
-﻿using DesafioZeDelivery.Api.Abstractions;
-using DesafioZeDelivery.Api.Models;
+﻿using DesafioZeDelivery.Core.Abstractions;
+using DesafioZeDelivery.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 

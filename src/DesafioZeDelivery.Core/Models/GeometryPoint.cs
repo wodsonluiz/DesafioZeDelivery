@@ -1,7 +1,6 @@
-﻿using MongoDB.Driver.GeoJsonObjectModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace DesafioZeDelivery.Api.Models
+namespace DesafioZeDelivery.Core.Models
 {
     public class GeometryPoint : GeometryBase
     {

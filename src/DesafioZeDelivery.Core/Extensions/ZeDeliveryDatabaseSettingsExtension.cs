@@ -1,7 +1,8 @@
-﻿using DesafioZeDelivery.Api.Models;
+﻿using DesafioZeDelivery.Core.Abstractions;
+using DesafioZeDelivery.Core.Models;
 using MongoDB.Driver;
 
-namespace DesafioZeDelivery.Api
+namespace DesafioZeDelivery.Core
 {
     public static class IZeDeliveryDatabaseSettingsExtension
     {
