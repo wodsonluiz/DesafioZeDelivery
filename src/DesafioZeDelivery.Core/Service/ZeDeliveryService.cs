@@ -1,10 +1,9 @@
 ﻿using DesafioZeDelivery.Core.Abstractions;
 using DesafioZeDelivery.Core.Models;
-using GeoJSON.Net.Geometry;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace DesafioZeDelivery.Core.Service
 {
@@ -17,11 +16,11 @@ namespace DesafioZeDelivery.Core.Service
             _specificationGeographics = settings.Configure();
         }
 
-        public List<SpecificationGeographic> Get()
+        public async Task<List<SpecificationGeographic>> Get()
         {
             try
             {
-                return _specificationGeographics.Find(sg => true).ToList();
+                return await _specificationGeographics.FindAsync(sg => true).Result.ToListAsync();
             }
             catch (Exception)
             {
@@ -42,11 +41,11 @@ namespace DesafioZeDelivery.Core.Service
             return null;
         }
 
-        public SpecificationGeographic Get(string id)
+        public async Task<SpecificationGeographic> Get(string id)
         {
             try
             {
-                return _specificationGeographics.Find(sg => sg.id == id).FirstOrDefault();
+                return  await _specificationGeographics.FindAsync(sg => sg.id == id).Result.FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
@@ -54,11 +53,12 @@ namespace DesafioZeDelivery.Core.Service
             }
 
         }
-        public SpecificationGeographic Create(SpecificationGeographic specificationGeographic)
+
+        public async Task<SpecificationGeographic> Create(SpecificationGeographic specificationGeographic)
         {
             try
             {
-                _specificationGeographics.InsertOne(specificationGeographic);
+                await _specificationGeographics.InsertOneAsync(specificationGeographic);
                 return specificationGeographic;
             }
             catch (Exception ex)
@@ -68,29 +68,17 @@ namespace DesafioZeDelivery.Core.Service
 
         }
 
-        public void Remove(string id)
+        public async Task Remove(string id)
         {
             try
             {
-                _specificationGeographics.DeleteOne(sg => sg.id == id);
+               await _specificationGeographics.DeleteOneAsync(sg => sg.id == id);
             }
             catch (Exception ex)
             {
                 throw;
             }
 
-        }
-    }
-
-    public static class ClassTest
-    {
-
-        public static bool FindTest(this GeometryMultiPolygon geometryMultiPolygon)
-        {
-            var multiPolygon = new MultiPolygon(geometryMultiPolygon.coordinates);
-
-
-            return false;
         }
     }
 }

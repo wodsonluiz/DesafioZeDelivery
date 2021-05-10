@@ -1,14 +1,15 @@
 ﻿using DesafioZeDelivery.Core.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DesafioZeDelivery.Core.Abstractions
 {
     public interface IZeDeliveryService
     {
-        List<SpecificationGeographic> Get();
+        Task<List<SpecificationGeographic>> Get();
         SpecificationGeographic GetAddress(double lon, double lat);
-        SpecificationGeographic Get(string id);
-        SpecificationGeographic Create(SpecificationGeographic specificationGeographic);
-        void Remove(string id);
+        Task<SpecificationGeographic> Get(string id);
+        Task<SpecificationGeographic> Create(SpecificationGeographic specificationGeographic);
+        Task Remove(string id);
     }
 }

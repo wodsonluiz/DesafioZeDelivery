@@ -2,6 +2,7 @@
 using DesafioZeDelivery.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DesafioZeDelivery.Api.Controllers
 {
@@ -17,30 +18,30 @@ namespace DesafioZeDelivery.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SpecificationGeographic> Get()
+        public async Task<IEnumerable<SpecificationGeographic>> Get()
         {
-            return _zeDeliveryService.Get();
+            return await _zeDeliveryService.Get();
         }
 
         [HttpGet]
-        [Route("/{id}")]
-        public SpecificationGeographic GetId(string id)
+        [Route("{id}")]
+        public async Task<SpecificationGeographic> GetId(string id)
         {
-            return _zeDeliveryService.Get(id);
+            return await _zeDeliveryService.Get(id);
         }
 
         [HttpGet]
-        [Route("/{lon}/{lat}")]
+        [Route("{lon}/{lat}")]
         public SpecificationGeographic GetAddress(double lon, double lat)
         {
             return _zeDeliveryService.GetAddress(lon, lat);
         }
 
         [HttpPost]
-        [Route("/create")]
-        public SpecificationGeographic Post([FromBody] SpecificationGeographic specificationGeographic)
+        [Route("create")]
+        public async Task<SpecificationGeographic> Post([FromBody] SpecificationGeographic specificationGeographic)
         {
-            return _zeDeliveryService.Create(specificationGeographic);
+            return await _zeDeliveryService.Create(specificationGeographic);
         }
     }
 }
