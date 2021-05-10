@@ -23,20 +23,21 @@ namespace DesafioZeDelivery.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetId")]
+        [Route("/{id}")]
         public SpecificationGeographic GetId(string id)
         {
             return _zeDeliveryService.Get(id);
         }
 
         [HttpGet]
-        [Route("GetAddress")]
+        [Route("/{lon}/{lat}")]
         public SpecificationGeographic GetAddress(double lon, double lat)
         {
             return _zeDeliveryService.GetAddress(lon, lat);
         }
 
         [HttpPost]
+        [Route("/create")]
         public SpecificationGeographic Post([FromBody] SpecificationGeographic specificationGeographic)
         {
             return _zeDeliveryService.Create(specificationGeographic);
