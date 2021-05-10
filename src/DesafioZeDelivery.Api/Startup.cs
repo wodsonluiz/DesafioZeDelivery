@@ -2,11 +2,19 @@ using DesafioZeDelivery.Core.Abstractions;
 using DesafioZeDelivery.Core.Models;
 using DesafioZeDelivery.Core.Service;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using System;
+using System.Linq;
+using System.Net.Mime;
+using System.Text.Json;
 
 namespace DesafioZeDelivery.Api
 {
@@ -27,6 +35,13 @@ namespace DesafioZeDelivery.Api
             services.AddSingleton<IZeDeliveryService, ZeDeliveryService>();
             services.AddControllers();
             services.AddSwaggerGen();
+
+            var sp = services.BuildServiceProvider();
+            var settings = sp.GetRequiredService<IZeDeliveryDatabaseSettings>();
+            var clientDb = new MongoClient(settings.ConnectionString);
+
+            services.AddHealthChecks()
+                .AddMongoDb(mongoClientSettings: clientDb.Settings, name: "Conexão com o banco de dados MongoDb", failureStatus: HealthStatus.Unhealthy);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +65,23 @@ namespace DesafioZeDelivery.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapHealthChecks("/healthcheck",
+                    new HealthCheckOptions
+                    {
+                        ResponseWriter = async (context, report) =>
+                        {
+                            var result = JsonSerializer.Serialize(
+                                new
+                                {
+                                    status = report.Status.ToString(),
+                                    monitors = report.Entries.Select(e => new { key = e.Key, value = Enum.GetName(typeof(HealthStatus), e.Value.Status) })
+                                });
+                            context.Response.ContentType = MediaTypeNames.Application.Json;
+                            await context.Response.WriteAsync(result);
+                        }
+                    }
+                );
             });
         }
     }
