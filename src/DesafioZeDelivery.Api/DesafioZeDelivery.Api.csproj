@@ -4,15 +4,17 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Font2\DesafioZeDelivery\src\DesafioZeDelivery.Api\DesafioZeDelivery.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="GeoJSON.Net" Version="1.2.19" />
     <PackageReference Include="MongoDB.Bson" Version="2.12.3" />
     <PackageReference Include="MongoDB.Driver" Version="2.12.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="C:\Users\wodso\.nuget\packages\mongodb.driver.core\2.12.3\build\../runtimes/win/native/libzstd.dll" />
-  </ItemGroup>
 
 
 </Project>

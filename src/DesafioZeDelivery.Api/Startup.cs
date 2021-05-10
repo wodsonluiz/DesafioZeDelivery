@@ -26,15 +26,22 @@ namespace DesafioZeDelivery.Api
 
             services.AddSingleton<IZeDeliveryService, ZeDeliveryService>();
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Desafio Zé Delivery");
+            });
 
             app.UseRouting();
 

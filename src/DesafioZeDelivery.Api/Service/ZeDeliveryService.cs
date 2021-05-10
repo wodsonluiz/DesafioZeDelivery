@@ -1,10 +1,7 @@
 ﻿using DesafioZeDelivery.Api.Abstractions;
 using DesafioZeDelivery.Api.Models;
 using GeoJSON.Net.Geometry;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.GeoJsonObjectModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,12 +21,12 @@ namespace DesafioZeDelivery.Api.Service
 
         public SpecificationGeographic GetAddress(double lon, double lat)
         {
-            FieldDefinition<SpecificationGeographic> field = "coverageArea.coordinates";
+            //FieldDefinition<SpecificationGeographic> field = "coverageArea.coordinates";
 
-            var point = GeoJson.Point(GeoJson.Geographic(lon, lat));
-            var filter = Builders<SpecificationGeographic>.Filter.Where(sg => sg.coverageArea.coordinates.Where(x => x.Where(xx => xx.Where(xxx => xxx.Where(xxxx => xxxx.Equals(lon)))));
+            //var point = GeoJson.Point(GeoJson.Geographic(lon, lat));
+            //var filter = Builders<SpecificationGeographic>.Filter.Where(sg => sg.coverageArea.coordinates.Where(x => x.Where(xx => xx.Where(xxx => xxx.Where(xxxx => xxxx.Equals(lon)))));
 
-            var objs = _specificationGeographics.Find(filter).FirstOrDefault();
+            //var objs = _specificationGeographics.Find(filter).FirstOrDefault();
 
 
             return null;
@@ -47,7 +44,8 @@ namespace DesafioZeDelivery.Api.Service
         public void Remove(string id) => _specificationGeographics.DeleteOne(sg => sg.id == id);
     }
 
-    public static class ClassTest{
+    public static class ClassTest
+    {
 
         public static bool FindTest(this GeometryMultiPolygon geometryMultiPolygon)
         {
