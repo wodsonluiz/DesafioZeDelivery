@@ -1,11 +1,7 @@
-﻿using DesafioZeDelivery.Api.Models;
-using DesafioZeDelivery.Api.Service;
+﻿using DesafioZeDelivery.Api.Abstractions;
+using DesafioZeDelivery.Api.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DesafioZeDelivery.Api.Controllers
 {
@@ -13,19 +9,31 @@ namespace DesafioZeDelivery.Api.Controllers
     [Route("[controller]")]
     public class ParceiroController : ControllerBase
     {
-        private readonly ILogger<ParceiroController> _logger;
         private readonly IZeDeliveryService _zeDeliveryService;
 
-        public ParceiroController(ILogger<ParceiroController> logger, IZeDeliveryService zeDeliveryService)
+        public ParceiroController(IZeDeliveryService zeDeliveryService)
         {
             _zeDeliveryService = zeDeliveryService;
-            _logger = logger;
         }
 
         [HttpGet]
         public IEnumerable<SpecificationGeographic> Get()
         {
             return _zeDeliveryService.Get();
+        }
+
+        [HttpGet]
+        [Route("GetId")]
+        public SpecificationGeographic GetId(string id)
+        {
+            return _zeDeliveryService.Get(id);
+        }
+
+        [HttpGet]
+        [Route("GetAddress")]
+        public SpecificationGeographic GetAddress(double lon, double lat)
+        {
+            return _zeDeliveryService.GetAddress(lon, lat);
         }
 
         [HttpPost]

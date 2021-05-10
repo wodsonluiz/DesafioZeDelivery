@@ -1,3 +1,4 @@
+using DesafioZeDelivery.Api.Abstractions;
 using DesafioZeDelivery.Api.Models;
 using DesafioZeDelivery.Api.Service;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +24,7 @@ namespace DesafioZeDelivery.Api
             services.Configure<ZeDeliveryDatabaseSettings>(Configuration.GetSection(nameof(ZeDeliveryDatabaseSettings)));
             services.AddSingleton<IZeDeliveryDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ZeDeliveryDatabaseSettings>>().Value);
 
-            services.AddScoped<IZeDeliveryService, ZeDeliveryService>();
+            services.AddSingleton<IZeDeliveryService, ZeDeliveryService>();
             services.AddControllers();
         }
 

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using MongoDB.Driver.GeoJsonObjectModel;
+using System.Collections.Generic;
 
 namespace DesafioZeDelivery.Api.Models
 {
     public class GeometryPoint : GeometryBase
     {
-        public List<string> coordinates { get; set; }
+        public List<double> coordinates { get; set; }
     }
 }
