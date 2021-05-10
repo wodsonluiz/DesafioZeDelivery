@@ -1,5 +1,4 @@
 using DesafioZeDelivery.Core.Abstractions;
-using DesafioZeDelivery.Core.Models;
 using DesafioZeDelivery.Core.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -9,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
 using System.Linq;
@@ -22,15 +20,14 @@ namespace DesafioZeDelivery.Api
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration _configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<ZeDeliveryDatabaseSettings>(Configuration.GetSection(nameof(ZeDeliveryDatabaseSettings)));
-            services.AddSingleton<IZeDeliveryDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ZeDeliveryDatabaseSettings>>().Value);
+            services.AddConfigurationZeDelivery(_configuration);
 
             services.AddSingleton<IZeDeliveryService, ZeDeliveryService>();
             services.AddControllers();

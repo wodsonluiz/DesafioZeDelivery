@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace DesafioZeDelivery.Core.Models
 {
-    public class SpecificationGeographic
+    public class Partner
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

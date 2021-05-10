@@ -9,14 +9,14 @@ namespace DesafioZeDelivery.Core.Service
 {
     public class ZeDeliveryService : IZeDeliveryService
     {
-        private readonly IMongoCollection<SpecificationGeographic> _specificationGeographics;
+        private readonly IMongoCollection<Partner> _specificationGeographics;
 
         public ZeDeliveryService(IZeDeliveryDatabaseSettings settings)
         {
             _specificationGeographics = settings.Configure();
         }
 
-        public async Task<List<SpecificationGeographic>> Get()
+        public async Task<List<Partner>> Get()
         {
             try
             {
@@ -28,7 +28,7 @@ namespace DesafioZeDelivery.Core.Service
             }
         }
 
-        public SpecificationGeographic GetAddress(double lon, double lat)
+        public Partner GetAddress(double lon, double lat)
         {
             //FieldDefinition<SpecificationGeographic> field = "coverageArea.coordinates";
 
@@ -41,11 +41,11 @@ namespace DesafioZeDelivery.Core.Service
             return null;
         }
 
-        public async Task<SpecificationGeographic> Get(string id)
+        public async Task<Partner> Get(string id)
         {
             try
             {
-                return  await _specificationGeographics.FindAsync(sg => sg.id == id).Result.FirstOrDefaultAsync();
+                return await _specificationGeographics.FindAsync(sg => sg.id == id).Result.FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace DesafioZeDelivery.Core.Service
 
         }
 
-        public async Task<SpecificationGeographic> Create(SpecificationGeographic specificationGeographic)
+        public async Task<Partner> Create(Partner specificationGeographic)
         {
             try
             {
@@ -68,11 +68,18 @@ namespace DesafioZeDelivery.Core.Service
 
         }
 
-        public async Task Remove(string id)
+        public async Task<bool> Remove(string id)
         {
             try
             {
-               await _specificationGeographics.DeleteOneAsync(sg => sg.id == id);
+                var result = await _specificationGeographics.DeleteOneAsync(sg => sg.id == id);
+
+                if (result.DeletedCount > 0)
+                {
+                    return true;
+                }
+
+                return false;
             }
             catch (Exception ex)
             {

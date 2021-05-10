@@ -18,28 +18,28 @@ namespace DesafioZeDelivery.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<SpecificationGeographic>> Get()
+        public async Task<IEnumerable<Partner>> Get()
         {
             return await _zeDeliveryService.Get();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<SpecificationGeographic> GetId(string id)
+        public async Task<Partner> GetId(string id)
         {
             return await _zeDeliveryService.Get(id);
         }
 
         [HttpGet]
         [Route("{lon}/{lat}")]
-        public SpecificationGeographic GetAddress(double lon, double lat)
+        public Partner GetAddress(double lon, double lat)
         {
             return _zeDeliveryService.GetAddress(lon, lat);
         }
 
         [HttpPost]
         [Route("create")]
-        public async Task<SpecificationGeographic> Post([FromBody] SpecificationGeographic specificationGeographic)
+        public async Task<Partner> Post([FromBody] Partner specificationGeographic)
         {
             return await _zeDeliveryService.Create(specificationGeographic);
         }
