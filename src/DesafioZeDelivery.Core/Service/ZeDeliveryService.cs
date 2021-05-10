@@ -2,6 +2,7 @@
 using DesafioZeDelivery.Core.Models;
 using GeoJSON.Net.Geometry;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,8 +17,17 @@ namespace DesafioZeDelivery.Core.Service
             _specificationGeographics = settings.Configure();
         }
 
-        public List<SpecificationGeographic> Get() =>
-            _specificationGeographics.Find(sg => true).ToList();
+        public List<SpecificationGeographic> Get()
+        {
+            try
+            {
+                return _specificationGeographics.Find(sg => true).ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public SpecificationGeographic GetAddress(double lon, double lat)
         {
@@ -32,16 +42,44 @@ namespace DesafioZeDelivery.Core.Service
             return null;
         }
 
-        public SpecificationGeographic Get(string id) =>
-            _specificationGeographics.Find(sg => sg.id == id).FirstOrDefault();
+        public SpecificationGeographic Get(string id)
+        {
+            try
+            {
+                return _specificationGeographics.Find(sg => sg.id == id).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
+        }
         public SpecificationGeographic Create(SpecificationGeographic specificationGeographic)
         {
-            _specificationGeographics.InsertOne(specificationGeographic);
-            return specificationGeographic;
+            try
+            {
+                _specificationGeographics.InsertOne(specificationGeographic);
+                return specificationGeographic;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
-        public void Remove(string id) => _specificationGeographics.DeleteOne(sg => sg.id == id);
+        public void Remove(string id)
+        {
+            try
+            {
+                _specificationGeographics.DeleteOne(sg => sg.id == id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
     }
 
     public static class ClassTest
