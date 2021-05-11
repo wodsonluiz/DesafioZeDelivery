@@ -17,7 +17,7 @@ namespace DesafioZeDelivery.Core.Models
         [BsonElement("document")]
         public string document { get; set; }
         [BsonElement("coverageArea")]
-        public GeoJSON.Net.Geometry.MultiPolygon coverageArea { get; set; }
+        public GeometryMultiPolygon coverageArea { get; set; }
         [BsonElement("address")]
         public GeometryPoint address { get; set; }
     }

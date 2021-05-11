@@ -38,7 +38,8 @@ namespace DesafioZeDelivery.Core.Service
             {
                 foreach (var item in resutList)
                 {
-
+                    var test = new GeoJSON.Net.Geometry.MultiPolygon(item.coverageArea.coordinates);
+                    var testVai = test.Coordinates;
                     //var multiPolygon = item.coverageArea.coordinates;
                 }
             }
