@@ -11,7 +11,7 @@ namespace DesafioZeDelivery
             objFake.id = Guid.NewGuid().ToString();
             objFake.tradingName = "Adega da Cerveja - Pinheiros Test";
             objFake.ownerName = "Zé da Silva Test";
-            objFake.document = "document";
+            objFake.document = "document -" + Guid.NewGuid().ToString();
 
             return objFake;
         }

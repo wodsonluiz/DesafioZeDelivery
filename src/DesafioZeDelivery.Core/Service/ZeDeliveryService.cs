@@ -47,25 +47,24 @@ namespace DesafioZeDelivery.Core.Service
             {
                 return await _specificationGeographics.FindAsync(sg => sg.id == id).Result.FirstOrDefaultAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
 
         }
 
-        public async Task<Partner> Create(Partner specificationGeographic)
+        public async Task<Partner> Create(Partner partner)
         {
             try
             {
-                await _specificationGeographics.InsertOneAsync(specificationGeographic);
-                return specificationGeographic;
+                await _specificationGeographics.InsertOneAsync(partner);
+                return partner;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
-
         }
 
         public async Task<bool> Remove(string id)
@@ -81,7 +80,7 @@ namespace DesafioZeDelivery.Core.Service
 
                 return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

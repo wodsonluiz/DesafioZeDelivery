@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Font2\DesafioZeDelivery\src\DesafioZeDelivery.Api\DesafioZeDelivery.Api.xml</DocumentationFile>
+    <DocumentationFile>D:\fonts\DesafioZeDelivery\src\DesafioZeDelivery.Api\DesafioZeDelivery.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

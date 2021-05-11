@@ -1,7 +1,7 @@
 using DesafioZeDelivery.Core.Abstractions;
 using DesafioZeDelivery.Core.Models;
 using DesafioZeDelivery.Core.Service;
-using Microsoft.Extensions.Configuration;
+using DesafioZeDelivery.Test.Common;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,13 +13,7 @@ namespace DesafioZeDelivery.Test.Service
         private IZeDeliveryService _zeDeliveryService;
         public ZeDeliveryServiceTest()
         {
-            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
-            var services = new ServiceCollection();
-            services.AddConfigurationZeDelivery(config);
-
-            var sp = services.BuildServiceProvider();
-            var settings = sp.GetRequiredService<IZeDeliveryDatabaseSettings>();
+            var settings = ServiceProviderCommon.Generator().GetRequiredService<IZeDeliveryDatabaseSettings>();
             _zeDeliveryService = new ZeDeliveryService(settings);
         }
 
@@ -31,6 +25,7 @@ namespace DesafioZeDelivery.Test.Service
 
             Assert.AreEqual(result.Result, obj);
         }
+
 
         [TestMethod]
         public void TestGet()
