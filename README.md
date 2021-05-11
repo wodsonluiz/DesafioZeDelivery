@@ -1,6 +1,9 @@
 # Desafio de Backend [Zé Delivery]
 ![Projeto](https://user-images.githubusercontent.com/13908258/117697587-0233e480-b199-11eb-9b28-9c688a91fb90.png)
 
+Microserviço responsavel pelo cadastro e consulta de novos parceiros. 
+Dentro do tempo habil o projeto foi desenvolvido para ser o mais desacoplado possivel em "plugins" sendo escrito de maneira que respeitasse o maximo dos limites arquiteturais (Eu escrevi um [artigo](https://wodsonluiz.medium.com/limites-da-arquitetura-b5a088c8c50c) onde aprofundo um pouco mais esse conceito).
+O Projeto tem muito potêncial de melhoria e de facil manutenção visando sempre o reaproveitamento de código. Os testes foram escritos de maneira para exemplificar a facilidade de aumentar a cobertura de testes de maneira fácil. O projeto foi feito com muito carinho e dedicação, feedbacks de qualquer natureza são bem vindos =)
 
 ## Pré requisitos
 
@@ -61,9 +64,16 @@ info: Microsoft.Hosting.Lifetime[0]
 
 ![giphy (1)](https://user-images.githubusercontent.com/13908258/117663558-2aaae700-b177-11eb-830e-42366df6ae5e.gif)
 
+#### Health check
+- No browser, você pode verificar a saude da aplicação e conexão com o banco de dados apontando para _http://localhost:5000/healthcheck_, se estiver tudo devidamente configurado você vai visualizar essa tela: 
+- ![Screenshot_3](https://user-images.githubusercontent.com/13908258/117742127-688d2700-b1da-11eb-8b3a-a82b4316d5a8.png)
+
+#### Swagger
+- Para ter acesso ao swagger da aplicação basta apontar para _http://localhost:5000/swagger_
+
 ### Operações
 - _Caso seja necessário instalar o curl, você pode encontrar as informaçoes nesse [link](https://www.tecmint.com/install-curl-in-linux/)_
-- _O teste pode ser realizado por client que realiza requisições rest http (postman, jmeter, restClient)_
+- _O teste pode ser realizado por qualquer client que realiza requisições rest http (postman, jmeter, restClient)_
 
 
 
@@ -97,12 +107,23 @@ curl --location --request GET 'http://localhost:5000/Parceiro'
 
 #### Filtra por Id
 ```
-curl --location --request GET 'http://localhost:5000/Parceiro/GetId?id=wodson'
+curl --location --request GET 'http://localhost:5000/Parceiro/wodson'
 ```
 
 #### Filtra por localização
+```
+curl --location --request GET 'http://localhost:5000/Parceiro/GetAddress?lon=-46.57421&lat=-21.785741'
+```
 
 ## Testes
+```
+$ cd test/DesafioZeDelivery.Test
+$ dotnet test
 
+output
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     5, Skipped:     0, Total:     5, Duration: 1 s - DesafioZeDelivery.Test.dll 
+```
 
 
