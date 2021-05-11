@@ -3,6 +3,7 @@ using DesafioZeDelivery.Core.Models;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DesafioZeDelivery.Core.Service
@@ -30,12 +31,20 @@ namespace DesafioZeDelivery.Core.Service
 
         public Partner GetAddress(double lon, double lat)
         {
-            //FieldDefinition<SpecificationGeographic> field = "coverageArea.coordinates";
+            List<List<List<List<double>>>> listResult;
+            var resutList = _specificationGeographics.FindAsync(sg => sg.address.coordinates.Any()).Result.ToList();
 
-            //var point = GeoJson.Point(GeoJson.Geographic(lon, lat));
-            //var filter = Builders<SpecificationGeographic>.Filter.Where(sg => sg.coverageArea.coordinates.Where(x => x.Where(xx => xx.Where(xxx => xxx.Where(xxxx => xxxx.Equals(lon)))));
+            if (resutList.Count > 0)
+            {
+                foreach (var item in resutList)
+                {
 
-            //var objs = _specificationGeographics.Find(filter).FirstOrDefault();
+                    //var multiPolygon = item.coverageArea.coordinates;
+                }
+            }
+
+
+
 
 
             return null;

@@ -43,12 +43,5 @@ namespace DesafioZeDelivery.Api.Controllers
         {
             return await _zeDeliveryService.Create(specificationGeographic);
         }
-
-        [HttpPost]
-        [Route("create")]
-        public async Task<Partner> Post([FromBody] Partner specificationGeographic)
-        {
-            return await _zeDeliveryService.Create(specificationGeographic);
-        }
     }
 }
