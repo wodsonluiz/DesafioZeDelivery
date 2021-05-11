@@ -3,7 +3,7 @@
 
 Microserviço responsavel pelo cadastro e consulta de novos parceiros. 
 Dentro do tempo habil o projeto foi desenvolvido para ser o mais desacoplado possivel em "plugins" sendo escrito de maneira que respeitasse o maximo dos limites arquiteturais (Eu escrevi um [artigo](https://wodsonluiz.medium.com/limites-da-arquitetura-b5a088c8c50c) onde aprofundo um pouco mais esse conceito).
-O Projeto tem muito potêncial de melhoria e de facil manutenção visando sempre o reaproveitamento de código. Os testes foram escritos de maneira para exemplificar a facilidade de aumentar a cobertura de testes de maneira fácil. O projeto foi feito com muito carinho e dedicação, feedbacks de qualquer natureza são bem vindos =)
+O Projeto tem muito potêncial de melhoria e de facil manutenção visando sempre o reaproveitamento de código. Os testes foram escritos de maneira para exemplificar a facilidade de aumentar a cobertura de testes de maneira fácil, vale lembrar que o projeto foi escrito em .netcore assim possibilitando reproduzir o teste em qualquer ambiente. O mesmo foi feito com muito carinho e dedicação, feedbacks de qualquer natureza são bem vindos =)
 
 ## Pré requisitos
 
