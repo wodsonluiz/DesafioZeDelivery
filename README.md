@@ -1,5 +1,5 @@
 # Desafio de Backend [Zé Delivery]
-![Projeto](https://user-images.githubusercontent.com/13908258/117697587-0233e480-b199-11eb-9b28-9c688a91fb90.png)
+![Projeto](https://user-images.githubusercontent.com/13908258/117749873-ddfff400-b1e8-11eb-9dca-dd9f4e6cfaf0.png)
 
 Microserviço responsavel pelo cadastro e consulta de novos parceiros. 
 Dentro do tempo habil o projeto foi desenvolvido para ser o mais desacoplado possivel em "plugins" sendo escrito de maneira que respeitasse o maximo dos limites arquiteturais (Eu escrevi um [artigo](https://wodsonluiz.medium.com/limites-da-arquitetura-b5a088c8c50c) onde aprofundo um pouco mais esse conceito).
