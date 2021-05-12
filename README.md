@@ -68,11 +68,11 @@ info: Microsoft.Hosting.Lifetime[0]
 - No browser, você pode verificar a saude da aplicação e conexão com o banco de dados apontando para _http://localhost:5000/healthcheck_, se estiver tudo devidamente configurado você vai visualizar essa tela: 
 - ![Screenshot_3](https://user-images.githubusercontent.com/13908258/117742127-688d2700-b1da-11eb-8b3a-a82b4316d5a8.png)
 
-### Operações
+#### Operações
 - _Caso opte por realizar os testes usando o curl, você pode encontrar as informaçoes nesse [link](https://www.tecmint.com/install-curl-in-linux/)_
 - _O teste pode ser realizado por qualquer client que realiza requisições rest http (postman, jmeter, restClient)_
 
-#### Realizar testes com o Swagger
+## Realizar testes com o Swagger
 - Para ter acesso ao swagger da aplicação basta apontar para _http://localhost:5000/swagger_
 
 ## Testes
