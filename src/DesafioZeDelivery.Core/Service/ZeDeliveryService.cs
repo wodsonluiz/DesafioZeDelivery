@@ -37,7 +37,7 @@ namespace DesafioZeDelivery.Core.Service
         {
             string cmdDoc = _queryDataBase.GenerateQueryFindLocation(lon, lat);
             var listResult = _queryDataBase.GetObjects(cmdDoc);
-            var listFiler = listResult.Where(p => p.address.coordinates.Any());
+            var listFiler = listResult.Where(p => p.address.coordinates != null ?  p.address.coordinates.Any() : false);
 
             return listFiler.ToList();
         }
