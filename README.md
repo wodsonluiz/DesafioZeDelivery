@@ -68,52 +68,12 @@ info: Microsoft.Hosting.Lifetime[0]
 - No browser, você pode verificar a saude da aplicação e conexão com o banco de dados apontando para _http://localhost:5000/healthcheck_, se estiver tudo devidamente configurado você vai visualizar essa tela: 
 - ![Screenshot_3](https://user-images.githubusercontent.com/13908258/117742127-688d2700-b1da-11eb-8b3a-a82b4316d5a8.png)
 
-#### Swagger
-- Para ter acesso ao swagger da aplicação basta apontar para _http://localhost:5000/swagger_
-
 ### Operações
-- _Caso seja necessário instalar o curl, você pode encontrar as informaçoes nesse [link](https://www.tecmint.com/install-curl-in-linux/)_
+- _Caso opte por realizar os testes usando o curl, você pode encontrar as informaçoes nesse [link](https://www.tecmint.com/install-curl-in-linux/)_
 - _O teste pode ser realizado por qualquer client que realiza requisições rest http (postman, jmeter, restClient)_
 
-
-
-#### Incluir novo parceiro 
-```
-curl --location --request POST 'http://localhost:5000/Parceiro/create' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "id": "01", 
-  "tradingName": "Adega da Cerveja - Pinheiros",
-  "ownerName": "Zé da Silva",
-  "document": "1432132123891/0011",
-  "coverageArea": { 
-    "type": "MultiPolygon", 
-    "coordinates": [
-      [[[30, 20], [45, 40], [10, 40], [30, 20]]], 
-      [[[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]]
-    ]
-  },
-  "address": { 
-    "type": "Point",
-    "coordinates": [-46.57421, -21.785741]
-  }
-}'
-```
-
-#### Listar todos os parceiros
-```
-curl --location --request GET 'http://localhost:5000/Parceiro'
-```
-
-#### Filtra por Id
-```
-curl --location --request GET 'http://localhost:5000/Parceiro/01'
-```
-
-#### Filtra por localização
-```
-curl --location --request GET 'http://localhost:5000/Parceiro/30/20'
-```
+#### Realizar testes com o Swagger
+- Para ter acesso ao swagger da aplicação basta apontar para _http://localhost:5000/swagger_
 
 ## Testes
 ```
