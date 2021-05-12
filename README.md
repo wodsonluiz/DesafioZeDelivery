@@ -8,12 +8,18 @@ O Projeto tem muito potêncial de melhoria e de facil manutenção visando sempr
 ## Pré requisitos
 
 - Instalar [Docker](https://www.docker.com/get-started)
+- Instalar [Docker-compose](https://docs.docker.com/compose/install/)
 - Instalar [.netcore 3.1.*](https://dotnet.microsoft.com/download/dotnet/3.1) 
 
 #### Verificar instalação
 ```
 $ docker --version
 Docker version 20.10.5, build 55c4c88
+```
+
+```
+$ docker-compose --version
+docker-compose version 1.29.0, build 07737305
 ```
 
 ```
@@ -33,11 +39,14 @@ CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS 
 93062c9263a7   mongo           "docker-entrypoint.s…"   10 seconds ago   Up 8 seconds   0.0.0.0:27017->27017/tcp   desafiozedelivery_mongo_1
 ```
 
-## Executar aplicativo
+#### Mongo-express
+Para acessar a dashboard de configuração do mongo-express, bastar direcionar no browser para o endpoint _http://localhost:8081/_, nesse ambiente podemos ver documentos e coleções do mongodb
+
+## Executar aplicativo :smiley:
 
 #### build
 ```
-$ cd DesafioZeDelivery/src/DesafioZeDelivery.Api
+$ cd src/DesafioZeDelivery.Api
 $ dotnet build 
 
 output
