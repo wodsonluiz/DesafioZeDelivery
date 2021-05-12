@@ -69,7 +69,7 @@ info: Microsoft.Hosting.Lifetime[0]
 - ![Screenshot_3](https://user-images.githubusercontent.com/13908258/117742127-688d2700-b1da-11eb-8b3a-a82b4316d5a8.png)
 
 #### Operações
-- _Caso opte por realizar os testes usando o curl, você pode encontrar as informaçoes nesse [link](https://www.tecmint.com/install-curl-in-linux/)_
+- _Caso opte por realizar os testes usando o curl, você pode encontrar as informaçoes de instalação nesse [link](https://www.tecmint.com/install-curl-in-linux/)_
 - _O teste pode ser realizado por qualquer client que realiza requisições rest http (postman, jmeter, restClient)_
 
 ## Realizar testes com o Swagger
