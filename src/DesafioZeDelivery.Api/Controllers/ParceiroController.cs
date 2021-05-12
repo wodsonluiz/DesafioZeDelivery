@@ -32,16 +32,23 @@ namespace DesafioZeDelivery.Api.Controllers
 
         [HttpGet]
         [Route("{lon}/{lat}")]
-        public Partner GetAddress(double lon, double lat)
+        public List<Partner> GetAddress(double lon, double lat)
         {
             return _zeDeliveryService.GetAddress(lon, lat);
         }
 
         [HttpPost]
         [Route("create")]
-        public async Task<Partner> Post([FromBody] Partner specificationGeographic)
+        public async Task<IActionResult> Post([FromBody] Partner specificationGeographic)
         {
-            return await _zeDeliveryService.Create(specificationGeographic);
+            var result = await _zeDeliveryService.Create(specificationGeographic);
+
+            if (result)
+            {
+                return Created("Success", null);
+            }
+
+            return BadRequest();
         }
     }
 }

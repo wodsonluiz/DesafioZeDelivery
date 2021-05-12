@@ -21,6 +21,9 @@ namespace DesafioZeDelivery.Core
                 new CreateIndexModel<Partner>(Builders<Partner>.IndexKeys.Descending(model => model.document),
                 new CreateIndexOptions { Unique = true }));
 
+            collection.Indexes.CreateOne(
+                new CreateIndexModel<Partner>(Builders<Partner>.IndexKeys.Descending(model => model.coverageArea)));
+
             return collection;
         }
     }

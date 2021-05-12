@@ -1,24 +1,31 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.Runtime.Serialization;
 
 namespace DesafioZeDelivery.Core.Models
 {
+    [DataContract]
     public class Partner
     {
+        public Partner()
+        {
+            _id = Guid.NewGuid().ToString();
+        }
+
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [DataMember]
         public string _id { get; private set; }
-        [BsonElement("id")]
+        [DataMember]
         public string id { get; set; }
-        [BsonElement("tradingName")]
+        [DataMember]
         public string tradingName { get; set; }
-        [BsonElement("ownerName")]
+        [DataMember]
         public string ownerName { get; set; }
-        [BsonElement("document")]
+        [DataMember]
         public string document { get; set; }
-        [BsonElement("coverageArea")]
+        [DataMember]
         public GeometryMultiPolygon coverageArea { get; set; }
-        [BsonElement("address")]
+        [DataMember]
         public GeometryPoint address { get; set; }
     }
 }

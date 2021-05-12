@@ -1,4 +1,5 @@
 using DesafioZeDelivery.Core.Abstractions;
+using DesafioZeDelivery.Core.Common;
 using DesafioZeDelivery.Core.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -8,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
-using MongoDB.Driver;
 using System;
 using System.Linq;
 using System.Net.Mime;
@@ -30,12 +30,14 @@ namespace DesafioZeDelivery.Api
             services.AddConfigurationZeDelivery(_configuration);
 
             services.AddSingleton<IZeDeliveryService, ZeDeliveryService>();
+            services.AddSingleton<IQueryDataBase, QueryDataBase>();
+
             services.AddControllers();
             services.AddSwaggerGen();
 
             var sp = services.BuildServiceProvider();
             var settings = sp.GetRequiredService<IZeDeliveryDatabaseSettings>();
-            var clientDb = new MongoClient(settings.ConnectionString);
+            var clientDb = settings.GetMongoClient();
 
             services.AddHealthChecks()
                 .AddMongoDb(mongoClientSettings: clientDb.Settings, name: "Conexão com o banco de dados MongoDb", failureStatus: HealthStatus.Unhealthy);

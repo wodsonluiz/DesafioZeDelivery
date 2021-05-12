@@ -11,10 +11,14 @@ namespace DesafioZeDelivery.Core.Service
     public class ZeDeliveryService : IZeDeliveryService
     {
         private readonly IMongoCollection<Partner> _specificationGeographics;
+        private readonly IZeDeliveryDatabaseSettings _settings;
+        private readonly IQueryDataBase _queryDataBase;
 
-        public ZeDeliveryService(IZeDeliveryDatabaseSettings settings)
+        public ZeDeliveryService(IZeDeliveryDatabaseSettings settings, IQueryDataBase queryDataBase)
         {
             _specificationGeographics = settings.Configure();
+            _settings = settings;
+            _queryDataBase = queryDataBase;
         }
 
         public async Task<List<Partner>> Get()
@@ -29,26 +33,13 @@ namespace DesafioZeDelivery.Core.Service
             }
         }
 
-        public Partner GetAddress(double lon, double lat)
+        public List<Partner> GetAddress(double lon, double lat)
         {
-            List<List<List<List<double>>>> listResult;
-            var resutList = _specificationGeographics.FindAsync(sg => sg.address.coordinates.Any()).Result.ToList();
+            string cmdDoc = _queryDataBase.GenerateQueryFindLocation(lon, lat);
+            var listResult = _queryDataBase.GetObjects(cmdDoc);
+            var listFiler = listResult.Where(p => p.address.coordinates.Any());
 
-            if (resutList.Count > 0)
-            {
-                foreach (var item in resutList)
-                {
-                    var test = new GeoJSON.Net.Geometry.MultiPolygon(item.coverageArea.coordinates);
-                    var testVai = test.Coordinates;
-                    //var multiPolygon = item.coverageArea.coordinates;
-                }
-            }
-
-
-
-
-
-            return null;
+            return listFiler.ToList();
         }
 
         public async Task<Partner> Get(string id)
@@ -64,16 +55,16 @@ namespace DesafioZeDelivery.Core.Service
 
         }
 
-        public async Task<Partner> Create(Partner partner)
+        public async Task<bool> Create(Partner partner)
         {
             try
             {
                 await _specificationGeographics.InsertOneAsync(partner);
-                return partner;
+                return true;
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
         }
 

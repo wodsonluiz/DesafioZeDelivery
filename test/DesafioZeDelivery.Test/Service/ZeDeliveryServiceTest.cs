@@ -1,4 +1,5 @@
 using DesafioZeDelivery.Core.Abstractions;
+using DesafioZeDelivery.Core.Common;
 using DesafioZeDelivery.Core.Models;
 using DesafioZeDelivery.Core.Service;
 using DesafioZeDelivery.Test.Common;
@@ -11,10 +12,12 @@ namespace DesafioZeDelivery.Test.Service
     public class ZeDeliveryServiceTest
     {
         private IZeDeliveryService _zeDeliveryService;
+        private IQueryDataBase _queryDataBase;
         public ZeDeliveryServiceTest()
         {
             var settings = ServiceProviderCommon.Generator().GetRequiredService<IZeDeliveryDatabaseSettings>();
-            _zeDeliveryService = new ZeDeliveryService(settings);
+            _queryDataBase = new QueryDataBase(settings);
+            _zeDeliveryService = new ZeDeliveryService(settings, _queryDataBase);
         }
 
         [TestMethod]
@@ -23,7 +26,7 @@ namespace DesafioZeDelivery.Test.Service
             var obj = new Partner().GeneratePartnerFake();
             var result = _zeDeliveryService.Create(obj);
 
-            Assert.AreEqual(result.Result, obj);
+            Assert.IsTrue(result.Result);
         }
 
 
@@ -39,16 +42,10 @@ namespace DesafioZeDelivery.Test.Service
         {
             var obj = new Partner().GeneratePartnerFake();
             var resultInsert = _zeDeliveryService.Create(obj);
-            var id = resultInsert.Result.id;
-            var resultListGetId = _zeDeliveryService.Get(id);
+            var id = resultInsert.Result;
+            var resultListGetId = _zeDeliveryService.Get(obj.id);
 
             Assert.IsNotNull(resultListGetId);
-        }
-
-        [TestMethod]
-        public void TestGetAddress()
-        {
-            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -56,8 +53,8 @@ namespace DesafioZeDelivery.Test.Service
         {
             var obj = new Partner().GeneratePartnerFake();
             var resultInsert = _zeDeliveryService.Create(obj);
-            var id = resultInsert.Result.id;
-            var resultRemove = _zeDeliveryService.Remove(id);
+            var id = resultInsert.Result;
+            var resultRemove = _zeDeliveryService.Remove(obj.id);
 
             Assert.IsTrue(resultRemove.Result);
         }
