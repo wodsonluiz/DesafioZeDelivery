@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "22f8eda9-1115-4eec-b4cd-d2bf2f303188",
+		"name": "Parceiro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Address",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/Parceiro/30/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Parceiro",
+						"30",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/Parceiro/wodson01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Parceiro",
+						"wodson01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"02\", \r\n  \"tradingName\": \"Adega da Cerveja - Pinheiros\",\r\n  \"ownerName\": \"Zé da Silva\",\r\n  \"document\": \"0022\",\r\n  \"coverageArea\": { \r\n    \"type\": \"MultiPolygon\", \r\n    \"coordinates\": [\r\n      [[[30, 20], [45, 40], [10, 40], [30, 20]]], \r\n      [[[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]]\r\n    ]\r\n  },\r\n  \"address\": { \r\n    \"type\": \"Point\",\r\n    \"coordinates\": null\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Parceiro/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Parceiro",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gell all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/Parceiro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Parceiro"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
