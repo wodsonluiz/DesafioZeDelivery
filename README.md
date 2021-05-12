@@ -48,7 +48,7 @@ Build succeeded.
 
 #### executar
 ```
-$ cd DesafioZeDelivery/src/DesafioZeDelivery.Api
+$ cd src/DesafioZeDelivery.Api
 $ dotnet run 
 
 output
