@@ -79,13 +79,13 @@ info: Microsoft.Hosting.Lifetime[0]
 
 #### Incluir novo parceiro 
 ```
-curl --location --request POST 'http://localhost:5000/Parceiro' \
+curl --location --request POST 'http://localhost:5000/Parceiro/create' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "id": "wodson", 
+  "id": "01", 
   "tradingName": "Adega da Cerveja - Pinheiros",
   "ownerName": "Zé da Silva",
-  "document": "1432132123891/0001",
+  "document": "1432132123891/0011",
   "coverageArea": { 
     "type": "MultiPolygon", 
     "coordinates": [
@@ -107,12 +107,12 @@ curl --location --request GET 'http://localhost:5000/Parceiro'
 
 #### Filtra por Id
 ```
-curl --location --request GET 'http://localhost:5000/Parceiro/wodson'
+curl --location --request GET 'http://localhost:5000/Parceiro/01'
 ```
 
 #### Filtra por localização
 ```
-curl --location --request GET 'http://localhost:5000/Parceiro/GetAddress?lon=-46.57421&lat=-21.785741'
+curl --location --request GET 'http://localhost:5000/Parceiro/30/20'
 ```
 
 ## Testes
@@ -123,7 +123,10 @@ $ dotnet test
 output
 A total of 1 test files matched the specified pattern.
 
-Passed!  - Failed:     0, Passed:     5, Skipped:     0, Total:     5, Duration: 1 s - DesafioZeDelivery.Test.dll 
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     4, Skipped:     0, Total:     4, Duration: 873 ms - DesafioZeDelivery.Test.dll
 ```
 
 
