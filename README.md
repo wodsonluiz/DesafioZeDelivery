@@ -3,7 +3,7 @@
 
 Microserviço responsavel pelo cadastro e consulta de novos parceiros. 
 Dentro do tempo habil o projeto foi desenvolvido para ser o mais desacoplado possivel em "plugins" sendo escrito de maneira que respeitasse o maximo dos limites arquiteturais (Eu escrevi um [artigo](https://wodsonluiz.medium.com/limites-da-arquitetura-b5a088c8c50c) onde aprofundo um pouco mais esse conceito).
-O Projeto tem muito potêncial de melhoria e de facil manutenção visando sempre o reaproveitamento de código. Os testes foram escritos de maneira para exemplificar a facilidade de aumentar a cobertura de testes de maneira fácil, vale lembrar que o projeto foi escrito em .netcore assim possibilitando reproduzir o teste em qualquer ambiente. O mesmo foi feito com muito carinho e dedicação, feedbacks de qualquer natureza são bem vindos =)
+O Projeto tem muito potêncial de melhoria e de facil manutenção visando sempre o reaproveitamento de código. Os testes foram escritos de maneira para exemplificar a facilidade de aumentar a cobertura de testes, vale lembrar que o projeto foi escrito em .netcore assim possibilitando rodar em qualquer ambiente por linha de comando ou IDE (VS Code ou Visual Studio). O mesmo foi feito com muito carinho e dedicação, feedbacks de qualquer natureza são bem vindos =)
 
 ## Pré requisitos
 
@@ -83,8 +83,11 @@ info: Microsoft.Hosting.Lifetime[0]
 
 ## Realizar testes com o Swagger
 - Para ter acesso ao swagger da aplicação basta apontar para _http://localhost:5000/swagger_
+- Adicionei ao projeto um [arquivo json](https://github.com/wodsonluiz/DesafioZeDelivery/blob/master/Parceiro.postman_collection.json) para importe do workspace pronto para uso no postaman
+- ![Screenshot_1](https://user-images.githubusercontent.com/13908258/117914869-85009080-b2ba-11eb-97c0-e4ab4d09459a.png)
 
-## Testes
+
+## Testes automatizados
 ```
 $ cd test/DesafioZeDelivery.Test
 $ dotnet test
