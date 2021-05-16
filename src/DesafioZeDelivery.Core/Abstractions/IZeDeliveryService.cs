@@ -9,7 +9,7 @@ namespace DesafioZeDelivery.Core.Abstractions
         Task<List<Partner>> Get();
         List<Partner> GetAddress(double lon, double lat);
         Task<Partner> Get(string id);
-        Task<bool> Create(Partner specificationGeographic);
+        Task<Partner> Create(Partner specificationGeographic);
         Task<bool> Remove(string id);
     }
 }

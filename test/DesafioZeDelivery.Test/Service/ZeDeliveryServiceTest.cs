@@ -26,7 +26,7 @@ namespace DesafioZeDelivery.Test.Service
             var obj = new Partner().GeneratePartnerFake();
             var result = _zeDeliveryService.Create(obj);
 
-            Assert.IsTrue(result.Result);
+            Assert.IsNotNull(result.Result);
         }
 
 

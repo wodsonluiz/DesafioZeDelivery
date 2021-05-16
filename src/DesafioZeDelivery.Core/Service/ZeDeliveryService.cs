@@ -11,13 +11,11 @@ namespace DesafioZeDelivery.Core.Service
     public class ZeDeliveryService : IZeDeliveryService
     {
         private readonly IMongoCollection<Partner> _specificationGeographics;
-        private readonly IZeDeliveryDatabaseSettings _settings;
         private readonly IQueryDataBase _queryDataBase;
 
         public ZeDeliveryService(IZeDeliveryDatabaseSettings settings, IQueryDataBase queryDataBase)
         {
             _specificationGeographics = settings.Configure();
-            _settings = settings;
             _queryDataBase = queryDataBase;
         }
 
@@ -55,16 +53,16 @@ namespace DesafioZeDelivery.Core.Service
 
         }
 
-        public async Task<bool> Create(Partner partner)
+        public async Task<Partner> Create(Partner partner)
         {
             try
             {
                 await _specificationGeographics.InsertOneAsync(partner);
-                return true;
+                return partner;
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
         }
 
