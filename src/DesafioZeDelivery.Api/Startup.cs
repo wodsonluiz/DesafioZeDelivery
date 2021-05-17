@@ -1,6 +1,7 @@
 using DesafioZeDelivery.Core.Abstractions;
 using DesafioZeDelivery.Core.Common;
 using DesafioZeDelivery.Core.Service;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -39,8 +40,13 @@ namespace DesafioZeDelivery.Api
             var settings = sp.GetRequiredService<IZeDeliveryDatabaseSettings>();
             var clientDb = settings.GetMongoClient();
 
+            //services.AddHealthChecks()
+            //    .AddMongoDb(mongoClientSettings: clientDb.Settings, name: "Conexão com o banco de dados MongoDb", failureStatus: HealthStatus.Unhealthy);
+
             services.AddHealthChecks()
-                .AddMongoDb(mongoClientSettings: clientDb.Settings, name: "Conexão com o banco de dados MongoDb", failureStatus: HealthStatus.Unhealthy);
+                .AddMongoDb(clientDb.Settings, name: "mongodb", tags: new string[] { "db", "data" });
+
+            services.AddHealthChecksUI().AddInMemoryStorage();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +57,35 @@ namespace DesafioZeDelivery.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHealthChecks("/status-text");
+            //app.UseHealthChecks("/status-json", new HealthCheckOptions()
+            //{
+            //    ResponseWriter = async (context, report) =>
+            //    {
+            //        var result = JsonSerializer.Serialize(new
+            //        {
+            //            currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+            //            statusApplication = report.Status.ToString()
+            //        }); ;
+
+            //        context.Response.ContentType = MediaTypeNames.Application.Json;
+            //        await context.Response.WriteAsync(result);
+            //    }
+            //});
+
+            app.UseHealthChecks("/healthchecks-data-ui", new HealthCheckOptions()
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
+
+            app.UseHealthChecksUI(options =>
+            {
+                options.UIPath = "/monitor";
+            });
+
+            app.UseStaticFiles();
 
             app.UseSwaggerUI(c =>
             {
@@ -64,23 +99,6 @@ namespace DesafioZeDelivery.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-
-                endpoints.MapHealthChecks("/healthcheck",
-                    new HealthCheckOptions
-                    {
-                        ResponseWriter = async (context, report) =>
-                        {
-                            var result = JsonSerializer.Serialize(
-                                new
-                                {
-                                    status = report.Status.ToString(),
-                                    monitors = report.Entries.Select(e => new { key = e.Key, value = Enum.GetName(typeof(HealthStatus), e.Value.Status) })
-                                });
-                            context.Response.ContentType = MediaTypeNames.Application.Json;
-                            await context.Response.WriteAsync(result);
-                        }
-                    }
-                );
             });
         }
     }
