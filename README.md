@@ -74,8 +74,8 @@ info: Microsoft.Hosting.Lifetime[0]
 ![giphy (1)](https://user-images.githubusercontent.com/13908258/117663558-2aaae700-b177-11eb-830e-42366df6ae5e.gif)
 
 #### Health check
-- No browser, você pode verificar a saude da aplicação e conexão com o banco de dados apontando para _http://localhost:5000/healthcheck_, se estiver tudo devidamente configurado você vai visualizar essa tela: 
-- ![Screenshot_3](https://user-images.githubusercontent.com/13908258/117742127-688d2700-b1da-11eb-8b3a-a82b4316d5a8.png)
+- No browser, você pode verificar a saude da aplicação e conexão com o banco de dados apontando para _http://localhost:5000/monitor_, se estiver tudo devidamente configurado você vai visualizar essa tela: 
+![Screenshot_2](https://user-images.githubusercontent.com/13908258/118570513-b3ff8200-b752-11eb-8ead-6bd3b11c7006.png)
 
 #### Operações
 - _Caso opte por realizar os testes usando o curl, você pode encontrar as informaçoes de instalação nesse [link](https://www.tecmint.com/install-curl-in-linux/)_
