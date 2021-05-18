@@ -3,7 +3,7 @@ name: Continuous Integration
 on: push
 
 jobs:
-  package:
+  build:
     strategy:
       matrix:
         os: [ macos-latest, ubuntu-latest, windows-latest ]
