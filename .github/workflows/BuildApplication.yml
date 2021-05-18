@@ -20,7 +20,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Run Tests
-      run: dotnet test test/DesafioZeDelivery.Test  
+      run: dotnet test .\test\DesafioZeDelivery.Test\DesafioZeDelivery.Test.csproj  
     - name: Build
       run: dotnet publish -c Release --no-restore -o output/DesafioZeDelivery src/DesafioZeDelivery.Api/DesafioZeDelivery.Api.csproj
     - uses: actions/upload-artifact@master
