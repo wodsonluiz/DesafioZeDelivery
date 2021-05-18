@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  desafiozedelivery.api:
-    image: ${DOCKER_REGISTRY-}desafiozedeliveryapi
-    build:
-      context: .
-      dockerfile: src/DesafioZeDelivery.Api/Dockerfile
