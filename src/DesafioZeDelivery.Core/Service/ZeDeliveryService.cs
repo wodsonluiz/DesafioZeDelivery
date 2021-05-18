@@ -1,6 +1,8 @@
 ﻿using DesafioZeDelivery.Core.Abstractions;
 using DesafioZeDelivery.Core.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +13,14 @@ namespace DesafioZeDelivery.Core.Service
     public class ZeDeliveryService : IZeDeliveryService
     {
         private readonly IMongoCollection<Partner> _mongoCollection;
-        private readonly IQueryDataBase _queryDataBase;
+        private readonly IZeDeliveryDatabaseSettings _settings;
 
-        public ZeDeliveryService(IQueryDataBase queryDataBase, IMongoCollection<Partner> mongoCollection)
+        public ZeDeliveryService(IMongoCollection<Partner> mongoCollection, IZeDeliveryDatabaseSettings settings)
         {
             _mongoCollection = mongoCollection;
-            _queryDataBase = queryDataBase;
+            _settings = settings;
         }
-
+       
         public async Task<List<Partner>> Get()
         {
             try
@@ -33,8 +35,8 @@ namespace DesafioZeDelivery.Core.Service
 
         public List<Partner> GetAddress(double lon, double lat)
         {
-            string cmdDoc = _queryDataBase.GenerateQueryFindLocation(lon, lat);
-            var listResult = _queryDataBase.GetObjects(cmdDoc);
+            string cmdDoc = GenerateQueryFindLocation(lon, lat);
+            var listResult = GetObjects(cmdDoc);
             var listFiler = listResult.Where(p => p.address.coordinates != null ?  p.address.coordinates.Any() : false);
 
             return listFiler.ToList();
@@ -50,7 +52,6 @@ namespace DesafioZeDelivery.Core.Service
             {
                 throw;
             }
-
         }
 
         public async Task<Partner> Create(Partner partner)
@@ -83,7 +84,31 @@ namespace DesafioZeDelivery.Core.Service
             {
                 throw;
             }
+        }
 
+        private string GenerateQueryFindLocation(double x, double y)
+        {
+            return @"{
+			find: 'DesafioZeDelivery',
+            filter: { coverageArea: { $geoIntersects: { $geometry: { 'type' : 'Point', 'coordinates' : [ " + x + ", " + y + " ] } } } }}";
+        }
+
+        private List<Partner> GetObjects(string filterCmd)
+        {
+            try
+            {
+                var mongoClient = _settings.GetMongoClient();
+                var db = mongoClient.GetDatabase(_settings.DatabaseName);
+                var cmd = new JsonCommand<BsonDocument>(filterCmd);
+                var response = db.RunCommand(cmd);
+
+                var obj = response[0]["firstBatch"];
+                return JsonConvert.DeserializeObject<List<Partner>>(obj.ToJson());
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
     }
 }

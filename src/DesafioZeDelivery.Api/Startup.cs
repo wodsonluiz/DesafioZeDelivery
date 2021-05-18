@@ -1,5 +1,4 @@
 using DesafioZeDelivery.Core.Abstractions;
-using DesafioZeDelivery.Core.Common;
 using DesafioZeDelivery.Core.Service;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +22,6 @@ namespace DesafioZeDelivery.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddConfigurationZeDelivery(_configuration);
-            services.AddSingleton<IQueryDataBase, QueryDataBase>();
             
             services.AddSingleton(s =>
             {

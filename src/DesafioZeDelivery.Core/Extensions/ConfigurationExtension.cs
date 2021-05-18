@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace DesafioZeDelivery
 {
-    public static class ConfigurationZeDeliveryExtension
+    public static class ConfigurationExtension
     {
         public static IServiceCollection AddConfigurationZeDelivery(this IServiceCollection services, IConfiguration _configuration)
         {

@@ -1,5 +1,4 @@
 using DesafioZeDelivery.Core.Abstractions;
-using DesafioZeDelivery.Core.Common;
 using DesafioZeDelivery.Core.Models;
 using DesafioZeDelivery.Core.Service;
 using DesafioZeDelivery.Test.Common;
@@ -12,22 +11,20 @@ namespace DesafioZeDelivery.Test.Service
     [TestClass]
     public class ZeDeliveryServiceTest
     {
-        private readonly IZeDeliveryService _zeDeliveryService;
+        private readonly IZeDeliveryService _service;
         public ZeDeliveryServiceTest()
         {
             var settings = ServiceProviderCommon.Generator().GetRequiredService<IZeDeliveryDatabaseSettings>();
-            var _queryDataBase = new QueryDataBase(settings);
-
             var collection = new ZeDeliveryDatabaseSettingsMock(settings);
 
-            _zeDeliveryService = new ZeDeliveryService(_queryDataBase, collection.ConfigureMock());
+            _service = new ZeDeliveryService(collection.ConfigureMock(), settings);
         }
 
         [TestMethod]
         public void TestCreate()
         {
             var obj = new Partner().GeneratePartnerFake();
-            var result = _zeDeliveryService.Create(obj);
+            var result = _service.Create(obj);
 
             Assert.IsNotNull(result.Result);
         }
@@ -36,7 +33,7 @@ namespace DesafioZeDelivery.Test.Service
         [TestMethod]
         public void TestGet()
         {
-            var result = _zeDeliveryService.Get();
+            var result = _service.Get();
             Assert.IsNotNull(result);
         }
 
@@ -44,9 +41,9 @@ namespace DesafioZeDelivery.Test.Service
         public void TestGetId()
         {
             var obj = new Partner().GeneratePartnerFake();
-            var resultInsert = _zeDeliveryService.Create(obj);
+            var resultInsert = _service.Create(obj);
             var id = resultInsert.Result;
-            var resultListGetId = _zeDeliveryService.Get(obj.id);
+            var resultListGetId = _service.Get(obj.id);
 
             Assert.IsNotNull(resultListGetId);
         }
@@ -55,9 +52,9 @@ namespace DesafioZeDelivery.Test.Service
         public void TestRemove()
         {
             var obj = new Partner().GeneratePartnerFake();
-            var resultInsert = _zeDeliveryService.Create(obj);
+            var resultInsert = _service.Create(obj);
             var id = resultInsert.Result;
-            var resultRemove = _zeDeliveryService.Remove(obj.id);
+            var resultRemove = _service.Remove(obj.id);
 
             Assert.IsTrue(resultRemove.Result);
         }
