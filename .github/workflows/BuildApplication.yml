@@ -1,35 +1,32 @@
-name: .NET
+name: Continuous Integration
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: push
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  package:
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
+    
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore --verbosity normal
-    - name: Build solution
-      run: dotnet build --verbosity normal
-    - name: Run Tests
-      run: dotnet test --no-build --verbosity normal
-    - name: Publish
-      run: dotnet publish -c Release --no-restore -o output/DesafioZeDelivery src/DesafioZeDelivery.Api/DesafioZeDelivery.Api.csproj
-    - uses: actions/upload-artifact@master
-      with:
-        name: webpack artifacts
-        path: output/DesafioZeDelivery
-        
+      - name: Checkout git repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Restore NuGet packages
+        run: dotnet restore --verbosity normal
+      - name: Build solution
+        run: dotnet build --verbosity normal
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal
+      - name: Publish
+        run: dotnet publish -c Release --no-restore -o output/DesafioZeDelivery src/DesafioZeDelivery.Api/DesafioZeDelivery.Api.csproj
+      - uses: actions/upload-artifact@master
+        with:
+          name: webpack artifacts
+          path: output/DesafioZeDelivery
+      
   publish:
     runs-on: ubuntu-latest
     needs: build
