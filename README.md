@@ -101,4 +101,5 @@ A total of 1 test files matched the specified pattern.
 Passed!  - Failed:     0, Passed:     4, Skipped:     0, Total:     4, Duration: 873 ms - DesafioZeDelivery.Test.dll
 ```
 
-
+## DevOps (CI)
+O Processo de integração continua utiliza o próprio motor do GitHub Actions disponivel na Aba [Actions](https://github.com/wodsonluiz/DesafioZeDelivery/actions) do projeto
