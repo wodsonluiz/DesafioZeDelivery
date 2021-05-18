@@ -4,15 +4,17 @@ using DesafioZeDelivery.Core.Service;
 using DesafioZeDelivery.Test.Common;
 using DesafioZeDelivery.Test.Mock;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace DesafioZeDelivery.Test.Service
 {
-    [TestClass]
+    [TestFixture]
     public class ZeDeliveryServiceTest
     {
-        private readonly IZeDeliveryService _service;
-        public ZeDeliveryServiceTest()
+        private IZeDeliveryService _service;
+
+        [OneTimeSetUp]
+        public void Setup()
         {
             var settings = ServiceProviderCommon.Generator().GetRequiredService<IZeDeliveryDatabaseSettings>();
             var collection = new ZeDeliveryDatabaseSettingsMock(settings);
@@ -20,7 +22,7 @@ namespace DesafioZeDelivery.Test.Service
             _service = new ZeDeliveryService(collection.ConfigureMock(), settings);
         }
 
-        [TestMethod]
+        [Test]
         public void TestCreate()
         {
             var obj = new Partner().GeneratePartnerFake();
@@ -30,14 +32,14 @@ namespace DesafioZeDelivery.Test.Service
         }
 
 
-        [TestMethod]
+        [Test]
         public void TestGet()
         {
             var result = _service.Get();
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetId()
         {
             var obj = new Partner().GeneratePartnerFake();
@@ -48,7 +50,7 @@ namespace DesafioZeDelivery.Test.Service
             Assert.IsNotNull(resultListGetId);
         }
 
-        [TestMethod]
+        [Test]
         public void TestRemove()
         {
             var obj = new Partner().GeneratePartnerFake();
