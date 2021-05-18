@@ -5,15 +5,9 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Linq;
-using System.Net.Mime;
-using System.Text.Json;
 
 namespace DesafioZeDelivery.Api
 {
@@ -29,9 +23,16 @@ namespace DesafioZeDelivery.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddConfigurationZeDelivery(_configuration);
+            services.AddSingleton<IQueryDataBase, QueryDataBase>();
+            
+            services.AddSingleton(s =>
+            {
+                var sp = s.GetRequiredService<IZeDeliveryDatabaseSettings>();
+
+                return sp.Configure();
+            });
 
             services.AddSingleton<IZeDeliveryService, ZeDeliveryService>();
-            services.AddSingleton<IQueryDataBase, QueryDataBase>();
 
             services.AddControllers();
             services.AddSwaggerGen();
@@ -39,9 +40,6 @@ namespace DesafioZeDelivery.Api
             var sp = services.BuildServiceProvider();
             var settings = sp.GetRequiredService<IZeDeliveryDatabaseSettings>();
             var clientDb = settings.GetMongoClient();
-
-            //services.AddHealthChecks()
-            //    .AddMongoDb(mongoClientSettings: clientDb.Settings, name: "Conexão com o banco de dados MongoDb", failureStatus: HealthStatus.Unhealthy);
 
             services.AddHealthChecks()
                 .AddMongoDb(clientDb.Settings, name: "mongodb", tags: new string[] { "db", "data" });
@@ -59,20 +57,6 @@ namespace DesafioZeDelivery.Api
             }
 
             app.UseHealthChecks("/status-text");
-            //app.UseHealthChecks("/status-json", new HealthCheckOptions()
-            //{
-            //    ResponseWriter = async (context, report) =>
-            //    {
-            //        var result = JsonSerializer.Serialize(new
-            //        {
-            //            currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-            //            statusApplication = report.Status.ToString()
-            //        }); ;
-
-            //        context.Response.ContentType = MediaTypeNames.Application.Json;
-            //        await context.Response.WriteAsync(result);
-            //    }
-            //});
 
             app.UseHealthChecks("/healthchecks-data-ui", new HealthCheckOptions()
             {

@@ -2,7 +2,7 @@
 using DesafioZeDelivery.Core.Models;
 using MongoDB.Driver;
 
-namespace DesafioZeDelivery.Core
+namespace DesafioZeDelivery
 {
     public static class IZeDeliveryDatabaseSettingsExtension
     {

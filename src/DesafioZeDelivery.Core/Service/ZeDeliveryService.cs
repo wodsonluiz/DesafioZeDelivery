@@ -10,12 +10,12 @@ namespace DesafioZeDelivery.Core.Service
 {
     public class ZeDeliveryService : IZeDeliveryService
     {
-        private readonly IMongoCollection<Partner> _specificationGeographics;
+        private readonly IMongoCollection<Partner> _mongoCollection;
         private readonly IQueryDataBase _queryDataBase;
 
-        public ZeDeliveryService(IZeDeliveryDatabaseSettings settings, IQueryDataBase queryDataBase)
+        public ZeDeliveryService(IQueryDataBase queryDataBase, IMongoCollection<Partner> mongoCollection)
         {
-            _specificationGeographics = settings.Configure();
+            _mongoCollection = mongoCollection;
             _queryDataBase = queryDataBase;
         }
 
@@ -23,7 +23,7 @@ namespace DesafioZeDelivery.Core.Service
         {
             try
             {
-                return await _specificationGeographics.FindAsync(sg => true).Result.ToListAsync();
+                return await _mongoCollection.FindAsync(sg => true).Result.ToListAsync();
             }
             catch (Exception)
             {
@@ -44,7 +44,7 @@ namespace DesafioZeDelivery.Core.Service
         {
             try
             {
-                return await _specificationGeographics.FindAsync(sg => sg.id == id).Result.FirstOrDefaultAsync();
+                return await _mongoCollection.FindAsync(sg => sg.id == id).Result.FirstOrDefaultAsync();
             }
             catch (Exception)
             {
@@ -57,7 +57,7 @@ namespace DesafioZeDelivery.Core.Service
         {
             try
             {
-                await _specificationGeographics.InsertOneAsync(partner);
+                await _mongoCollection.InsertOneAsync(partner);
                 return partner;
             }
             catch (Exception)
@@ -70,7 +70,7 @@ namespace DesafioZeDelivery.Core.Service
         {
             try
             {
-                var result = await _specificationGeographics.DeleteOneAsync(sg => sg.id == id);
+                var result = await _mongoCollection.DeleteOneAsync(sg => sg.id == id);
 
                 if (result.DeletedCount > 0)
                 {

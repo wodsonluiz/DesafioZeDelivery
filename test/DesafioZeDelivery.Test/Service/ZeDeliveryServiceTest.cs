@@ -3,6 +3,7 @@ using DesafioZeDelivery.Core.Common;
 using DesafioZeDelivery.Core.Models;
 using DesafioZeDelivery.Core.Service;
 using DesafioZeDelivery.Test.Common;
+using DesafioZeDelivery.Test.Mock;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -11,13 +12,15 @@ namespace DesafioZeDelivery.Test.Service
     [TestClass]
     public class ZeDeliveryServiceTest
     {
-        private IZeDeliveryService _zeDeliveryService;
-        private IQueryDataBase _queryDataBase;
+        private readonly IZeDeliveryService _zeDeliveryService;
         public ZeDeliveryServiceTest()
         {
             var settings = ServiceProviderCommon.Generator().GetRequiredService<IZeDeliveryDatabaseSettings>();
-            _queryDataBase = new QueryDataBase(settings);
-            _zeDeliveryService = new ZeDeliveryService(settings, _queryDataBase);
+            var _queryDataBase = new QueryDataBase(settings);
+
+            var collection = new ZeDeliveryDatabaseSettingsMock(settings);
+
+            _zeDeliveryService = new ZeDeliveryService(_queryDataBase, collection.ConfigureMock());
         }
 
         [TestMethod]
