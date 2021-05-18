@@ -17,13 +17,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Restore NuGet packages
-        run: dotnet restore --verbosity normal
+    - name: Restore dependencies
+      run: dotnet restore --verbosity normal
     - name: Build solution
-        run: dotnet build --verbosity normal
-    - name: Run tests
-        run: dotnet test --no-build --verbosity normal
-    - name: Build
+      run: dotnet build --verbosity normal
+    - name: Run Tests
+      run: dotnet test --no-build --verbosity normal
+    - name: Publish
       run: dotnet publish -c Release --no-restore -o output/DesafioZeDelivery src/DesafioZeDelivery.Api/DesafioZeDelivery.Api.csproj
     - uses: actions/upload-artifact@master
       with:
