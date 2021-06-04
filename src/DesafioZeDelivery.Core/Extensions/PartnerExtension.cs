@@ -7,13 +7,12 @@ namespace DesafioZeDelivery
     {
         public static Partner GeneratePartnerFake(this Partner partner)
         {
-            var objFake = new Partner();
-            objFake.id = Guid.NewGuid().ToString();
-            objFake.tradingName = "Adega da Cerveja - Pinheiros Test";
-            objFake.ownerName = "Zé da Silva Test";
-            objFake.document = "document -" + Guid.NewGuid().ToString();
+            partner.id = Guid.NewGuid().ToString();
+            partner.tradingName = "Adega da Cerveja - Pinheiros Test";
+            partner.ownerName = "Zé da Silva Test";
+            partner.document = "document -" + Guid.NewGuid().ToString();
 
-            return objFake;
+            return partner;
         }
     }
 }
