@@ -21,7 +21,7 @@ build_script:
 test_script:
 - cmd: dotnet test .\test\DesafioZeDelivery.Test\DesafioZeDelivery.Test.csproj
 artifacts:
-- path: src\Mockaco\bin\Release\net5.0\publish\
+- path: src\DesafioZeDelivery.Api\bin\Release\net5.0\publish\
   name: DesafioZeDelivery Web Site
 deploy:
 - provider: GitHub
