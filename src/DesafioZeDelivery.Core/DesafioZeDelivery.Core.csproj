@@ -11,7 +11,6 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.14" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.14" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.14" />
-    <PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
     <PackageReference Include="mongocsharpdriver" Version="2.12.3" />
     <PackageReference Include="MongoDB.Bson" Version="2.12.3" />
     <PackageReference Include="MongoDB.Driver" Version="2.12.3" />
