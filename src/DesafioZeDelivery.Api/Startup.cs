@@ -69,10 +69,8 @@ namespace DesafioZeDelivery.Api
 
             app.UseStaticFiles();
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Desafio Zé Delivery");
-            });
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DesafioZeDelivery v1"));
 
             app.UseRouting();
 

@@ -1,31 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>2dff37cd-fba3-43a6-a1d0-b0df89fef6b5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\fonts\DesafioZeDelivery\src\DesafioZeDelivery.Api\DesafioZeDelivery.Api.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.3" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.2" />
     <PackageReference Include="AspNetCore.HealthChecks.MongoDb" Version="3.1.3" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="3.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
     <PackageReference Include="MongoDB.Driver" Version="2.12.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DesafioZeDelivery.Core\DesafioZeDelivery.Core.csproj" />
   </ItemGroup>
-
-
 
 </Project>
