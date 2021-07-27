@@ -1,6 +1,9 @@
 # Desafio de Backend [Zé Delivery]
 ![Projeto](https://user-images.githubusercontent.com/13908258/117749873-ddfff400-b1e8-11eb-9dca-dd9f4e6cfaf0.png)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/0e0qfnp2kobgakl6/branch/master?svg=true)](https://ci.appveyor.com/project/natenho/mockaco/branch/master) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/natenho/mockaco)](https://hub.docker.com/r/natenho/mockaco)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnatenho%2FMockaco.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnatenho%2FMockaco?ref=badge_shield)
+
 Microserviço responsavel pelo cadastro e consulta de novos parceiros. 
 Dentro do tempo habil o projeto foi desenvolvido para ser o mais desacoplado possivel em "plugins" sendo escrito de maneira que respeitasse o maximo dos limites arquiteturais (Eu escrevi um [artigo](https://wodsonluiz.medium.com/limites-da-arquitetura-b5a088c8c50c) onde aprofundo um pouco mais esse conceito).
 O Projeto tem muito potêncial de melhoria e de facil manutenção visando sempre o reaproveitamento de código. Os testes foram escritos de maneira para exemplificar a facilidade de aumentar a cobertura de testes, vale lembrar que o projeto foi escrito em .netcore assim possibilitando rodar em qualquer ambiente por linha de comando ou IDE (VS Code ou Visual Studio). O mesmo foi feito com muito carinho e dedicação, feedbacks de qualquer natureza são bem vindos =)
