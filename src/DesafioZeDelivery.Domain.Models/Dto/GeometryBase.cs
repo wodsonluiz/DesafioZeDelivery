@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace DesafioZeDelivery.Core.Models
+namespace DesafioZeDelivery.Domain.Models.Dto
 {
     public class GeometryBase
     {

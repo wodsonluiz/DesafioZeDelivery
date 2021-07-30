@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DesafioZeDelivery.Core.Models
+namespace DesafioZeDelivery.Domain.Models.Dto
 {
     public class GeometryMultiPolygon : GeometryBase
     {

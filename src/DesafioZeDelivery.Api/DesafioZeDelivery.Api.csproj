@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>2dff37cd-fba3-43a6-a1d0-b0df89fef6b5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DesafioZeDelivery.Core\DesafioZeDelivery.Core.csproj" />
+    <ProjectReference Include="..\DesafioZeDelivery.Abstraction\DesafioZeDelivery.Abstraction.csproj" />
+    <ProjectReference Include="..\DesafioZeDelivery.Domain\DesafioZeDelivery.Domain.csproj" />
   </ItemGroup>
 
 </Project>

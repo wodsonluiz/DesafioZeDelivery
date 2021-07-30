@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -29,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DesafioZeDelivery.Core\DesafioZeDelivery.Core.csproj" />
+    <ProjectReference Include="..\..\src\DesafioZeDelivery.Abstraction\DesafioZeDelivery.Abstraction.csproj" />
+    <ProjectReference Include="..\..\src\DesafioZeDelivery.Domain.Models\DesafioZeDelivery.Domain.Models.csproj" />
+    <ProjectReference Include="..\..\src\DesafioZeDelivery.Domain\DesafioZeDelivery.Domain.csproj" />
   </ItemGroup>
 
 </Project>

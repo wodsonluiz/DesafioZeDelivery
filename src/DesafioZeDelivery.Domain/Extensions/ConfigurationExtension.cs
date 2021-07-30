@@ -1,5 +1,5 @@
-﻿using DesafioZeDelivery.Core.Abstractions;
-using DesafioZeDelivery.Core.Models;
+﻿using DesafioZeDelivery.Abstraction.Interfaces.Settings;
+using DesafioZeDelivery.Domain.Service.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

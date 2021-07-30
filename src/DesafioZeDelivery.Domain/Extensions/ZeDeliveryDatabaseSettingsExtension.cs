@@ -1,5 +1,5 @@
-﻿using DesafioZeDelivery.Core.Abstractions;
-using DesafioZeDelivery.Core.Models;
+﻿using DesafioZeDelivery.Abstraction.Interfaces.Settings;
+using DesafioZeDelivery.Domain.Models.Dto;
 using MongoDB.Driver;
 
 namespace DesafioZeDelivery

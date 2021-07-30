@@ -1,6 +1,7 @@
-using DesafioZeDelivery.Core.Abstractions;
-using DesafioZeDelivery.Core.Models;
-using DesafioZeDelivery.Core.Service;
+using DesafioZeDelivery.Abstraction.Interfaces;
+using DesafioZeDelivery.Abstraction.Interfaces.Settings;
+using DesafioZeDelivery.Domain.Models.Dto;
+using DesafioZeDelivery.Domain.Service;
 using DesafioZeDelivery.Test.Common;
 using DesafioZeDelivery.Test.Mock;
 using Microsoft.Extensions.DependencyInjection;

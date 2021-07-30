@@ -1,4 +1,4 @@
-﻿using DesafioZeDelivery.Core.Models;
+﻿using DesafioZeDelivery.Domain.Models.Dto;
 using System;
 
 namespace DesafioZeDelivery

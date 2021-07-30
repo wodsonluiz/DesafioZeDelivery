@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace DesafioZeDelivery.Core.Models
+namespace DesafioZeDelivery.Domain.Models.Dto
 {
     [DataContract]
     public class Partner

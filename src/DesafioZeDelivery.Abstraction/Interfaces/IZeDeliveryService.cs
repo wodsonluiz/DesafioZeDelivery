@@ -1,8 +1,8 @@
-﻿using DesafioZeDelivery.Core.Models;
+﻿using DesafioZeDelivery.Domain.Models.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DesafioZeDelivery.Core.Abstractions
+namespace DesafioZeDelivery.Abstraction.Interfaces
 {
     public interface IZeDeliveryService
     {

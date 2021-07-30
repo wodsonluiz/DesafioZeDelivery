@@ -1,5 +1,5 @@
-﻿using DesafioZeDelivery.Core.Abstractions;
-using DesafioZeDelivery.Core.Models;
+﻿using DesafioZeDelivery.Abstraction.Interfaces;
+using DesafioZeDelivery.Domain.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

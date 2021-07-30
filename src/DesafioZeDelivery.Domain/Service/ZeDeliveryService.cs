@@ -1,5 +1,6 @@
-﻿using DesafioZeDelivery.Core.Abstractions;
-using DesafioZeDelivery.Core.Models;
+﻿using DesafioZeDelivery.Abstraction.Interfaces;
+using DesafioZeDelivery.Abstraction.Interfaces.Settings;
+using DesafioZeDelivery.Domain.Models.Dto;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DesafioZeDelivery.Core.Service
+namespace DesafioZeDelivery.Domain.Service
 {
     public class ZeDeliveryService : IZeDeliveryService
     {
