@@ -6,8 +6,8 @@ namespace DesafioZeDelivery.Abstraction.Interfaces
 {
     public interface IZeDeliveryService
     {
-        Task<List<Partner>> Get();
-        List<Partner> GetAddress(double lon, double lat);
+        Task<IEnumerable<Partner>> Get();
+        Task<IEnumerable<Partner>> GetAddress(double lon, double lat);
         Task<Partner> Get(string id);
         Task<Partner> Create(Partner specificationGeographic);
         Task<bool> Remove(string id);

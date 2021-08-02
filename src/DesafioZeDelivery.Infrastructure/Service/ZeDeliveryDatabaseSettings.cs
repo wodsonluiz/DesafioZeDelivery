@@ -1,6 +1,6 @@
-﻿using DesafioZeDelivery.Abstraction.Interfaces.Settings;
+﻿using DesafioZeDelivery.Infrastructure.Interfaces;
 
-namespace DesafioZeDelivery.Domain.Service.Settings
+namespace DesafioZeDelivery.Infrastructure.Service
 {
     public class ZeDeliveryDatabaseSettings : IZeDeliveryDatabaseSettings
     {

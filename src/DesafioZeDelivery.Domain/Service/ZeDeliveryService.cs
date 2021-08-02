@@ -1,11 +1,10 @@
 ﻿using DesafioZeDelivery.Abstraction.Interfaces;
-using DesafioZeDelivery.Abstraction.Interfaces.Settings;
 using DesafioZeDelivery.Domain.Models.Dto;
+using DesafioZeDelivery.Infrastructure.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DesafioZeDelivery.Domain.Service
@@ -13,26 +12,23 @@ namespace DesafioZeDelivery.Domain.Service
     public class ZeDeliveryService : IZeDeliveryService
     {
         private readonly IMongoCollection<Partner> _mongoCollection;
-        private readonly IZeDeliveryDatabaseSettings _settings;
+        private readonly IDbInfrastructureCommon<Partner> _mongo;
 
         public ZeDeliveryService(IMongoCollection<Partner> mongoCollection, IZeDeliveryDatabaseSettings settings)
         {
             _mongoCollection = mongoCollection;
-            _settings = settings;
         }
 
-        public async Task<List<Partner>> Get()
+        public async Task<IEnumerable<Partner>> Get()
         {
-            return await _mongoCollection.FindAsync(sg => true).Result.ToListAsync();
+            return await _mongo.Get();
         }
 
-        public List<Partner> GetAddress(double lon, double lat)
+        public async Task<IEnumerable<Partner>> GetAddress(double lon, double lat)
         {
-            string cmdDoc = GenerateQueryFindLocation(lon, lat);
-            var listResult = GetObjects(cmdDoc);
-            var listFiler = listResult.Where(p => p.address.coordinates != null ? p.address.coordinates.Any() : false);
-
-            return listFiler.ToList();
+            string filter = GenerateQueryFindLocation(lon, lat);
+            var addess = await _mongo.Get(filter);
+            return addess; 
         }
 
         public async Task<Partner> Get(string id)
@@ -60,15 +56,5 @@ namespace DesafioZeDelivery.Domain.Service
             filter: { coverageArea: { $geoIntersects: { $geometry: { 'type' : 'Point', 'coordinates' : [ " + x + ", " + y + " ] } } } }}";
         }
 
-        private List<Partner> GetObjects(string filterCmd)
-        {
-            var mongoClient = _settings.GetMongoClient();
-            var db = mongoClient.GetDatabase(_settings.DatabaseName);
-            var cmd = new JsonCommand<BsonDocument>(filterCmd);
-            var response = db.RunCommand(cmd);
-
-            var obj = response[0]["firstBatch"];
-            return JsonConvert.DeserializeObject<List<Partner>>(obj.ToJson());
-        }
     }
 }

@@ -1,6 +1,6 @@
 using DesafioZeDelivery.Abstraction.Interfaces;
-using DesafioZeDelivery.Abstraction.Interfaces.Settings;
 using DesafioZeDelivery.Domain.Service;
+using DesafioZeDelivery.Infrastructure.Interfaces;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;

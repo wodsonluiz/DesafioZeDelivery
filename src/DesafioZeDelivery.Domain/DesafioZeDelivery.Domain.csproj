@@ -17,6 +17,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\DesafioZeDelivery.Abstraction\DesafioZeDelivery.Abstraction.csproj" />
 	  <ProjectReference Include="..\DesafioZeDelivery.Domain.Models\DesafioZeDelivery.Domain.Models.csproj" />
+	  <ProjectReference Include="..\DesafioZeDelivery.Infrastructure\DesafioZeDelivery.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

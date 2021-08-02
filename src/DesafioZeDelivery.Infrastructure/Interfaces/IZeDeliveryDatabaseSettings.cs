@@ -1,4 +1,4 @@
-﻿namespace DesafioZeDelivery.Abstraction.Interfaces.Settings
+﻿namespace DesafioZeDelivery.Infrastructure.Interfaces
 {
     public interface IZeDeliveryDatabaseSettings
     {

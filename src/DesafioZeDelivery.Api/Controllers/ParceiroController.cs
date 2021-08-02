@@ -32,9 +32,9 @@ namespace DesafioZeDelivery.Api.Controllers
 
         [HttpGet]
         [Route("{lon}/{lat}")]
-        public List<Partner> GetAddress(double lon, double lat)
+        public async Task<IEnumerable<Partner>> GetAddress(double lon, double lat)
         {
-            return _zeDeliveryService.GetAddress(lon, lat);
+            return await _zeDeliveryService.GetAddress(lon, lat);
         }
 
         [HttpPost]

@@ -1,5 +1,5 @@
-﻿using DesafioZeDelivery.Abstraction.Interfaces.Settings;
-using DesafioZeDelivery.Domain.Models.Dto;
+﻿using DesafioZeDelivery.Domain.Models.Dto;
+using DesafioZeDelivery.Infrastructure.Interfaces;
 using Mongo2Go;
 using MongoDB.Driver;
 
