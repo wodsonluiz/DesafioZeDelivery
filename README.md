@@ -1,6 +1,7 @@
-# Desafio de Backend [Zé Delivery]
+# Desafio de Backend [Zé Delivery] 
+[![Build status](https://ci.appveyor.com/api/projects/status/0e0qfnp2kobgakl6/branch/master?svg=true)](https://ci.appveyor.com/project/wodsonluiz/desafiozedelivery)
+
 ![Projeto](https://user-images.githubusercontent.com/13908258/117749873-ddfff400-b1e8-11eb-9dca-dd9f4e6cfaf0.png)
-[![Build status](https://ci.appveyor.com/api/projects/status/0e0qfnp2kobgakl6/branch/master?svg=true)](https://ci.appveyor.com/project/wodsonluiz/writerfile)
 
 
 Microserviço responsavel pelo cadastro e consulta de novos parceiros. 
