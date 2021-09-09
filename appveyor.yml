@@ -27,3 +27,5 @@ build_script:
     dotnet publish ./src/DesafioZeDelivery.Domain/DesafioZeDelivery.Domain.csproj
     dotnet publish ./src/DesafioZeDelivery.Domain.Models/DesafioZeDelivery.Domain.Models.csproj
     dotnet publish ./src/DesafioZeDelivery.Infrastructure/DesafioZeDelivery.Infrastructure.csproj
+test_script:
+- cmd: dotnet test .\test\Mockaco.Tests\Mockaco.Tests.csproj
