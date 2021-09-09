@@ -31,7 +31,7 @@ namespace DesafioZeDelivery.Api
                 return sp.Configure();
             });
 
-            services.AddSingleton<IZeDeliveryService, ZeDeliveryService>();
+            services.AddScoped<IZeDeliveryService, ZeDeliveryService>();
 
             services.AddControllers();
             services.AddSwaggerGen();

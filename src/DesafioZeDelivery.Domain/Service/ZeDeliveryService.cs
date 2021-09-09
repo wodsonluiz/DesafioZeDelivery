@@ -12,22 +12,23 @@ namespace DesafioZeDelivery.Domain.Service
     public class ZeDeliveryService : IZeDeliveryService
     {
         private readonly IMongoCollection<Partner> _mongoCollection;
-        private readonly IDbInfrastructureCommon<Partner> _mongo;
+        private readonly IZeDeliveryDatabaseSettings _settings;
 
         public ZeDeliveryService(IMongoCollection<Partner> mongoCollection, IZeDeliveryDatabaseSettings settings)
         {
             _mongoCollection = mongoCollection;
+            _settings = settings;
         }
 
         public async Task<IEnumerable<Partner>> Get()
         {
-            return await _mongo.Get();
+            return await _mongoCollection.FindAsync(sg => true).Result.ToListAsync();
         }
 
         public async Task<IEnumerable<Partner>> GetAddress(double lon, double lat)
         {
             string filter = GenerateQueryFindLocation(lon, lat);
-            var addess = await _mongo.Get(filter);
+            var addess = await GetWithFilter(filter);
             return addess; 
         }
 
@@ -56,5 +57,16 @@ namespace DesafioZeDelivery.Domain.Service
             filter: { coverageArea: { $geoIntersects: { $geometry: { 'type' : 'Point', 'coordinates' : [ " + x + ", " + y + " ] } } } }}";
         }
 
+        public async Task<IEnumerable<Partner>> GetWithFilter(string filter)
+        {
+            var mongoClient = _settings.GetMongoClient();
+            var db = mongoClient.GetDatabase(_settings.DatabaseName);
+
+            var cmd = new JsonCommand<BsonDocument>(filter);
+            var response = await db.RunCommandAsync(cmd);
+
+            var obj = response[0]["firstBatch"];
+            return JsonConvert.DeserializeObject<List<Partner>>(obj.ToJson());
+        }
     }
 }
